@@ -13,5 +13,5 @@ brew install swi-prolog
 Then from the `src` directory, run
 
 ```
-make
+make run
 ```
