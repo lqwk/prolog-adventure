@@ -42,7 +42,7 @@
 \begin{document}
 \maketitle
 
-\section*{Introduction}
+\section{Introduction}
 
 We are trying to build an open-world adventure game where a role-played hero can navigate and explore. This game is loosely inspired by the existing game Dungeons and Dragons.
 
@@ -55,7 +55,7 @@ The rules and facts will need to be engineered as knowledge and added to our kno
 The inference engine will determine, based on the rules and facts, what moves are permitted and what will happen once the hero makes the move. It will use the move that the hero makes (newly added fact) to infer a new world state that sets the hero up for the next move.
 
 
-\section*{Requirements and Questions}
+\section{Requirements and Questions}
 
 The game will be built in the logic programming language Prolog \cite{swiprolog}. This language contains an inference engine that will allow us to derive rules based on existing rules and facts and is best suited for our open-world game.
 
@@ -71,9 +71,43 @@ The following lists some requirements and questions:
 \end{itemize}
 
 
-\section*{Plan and Milestones}
 
-High Level Requirements:
+\section{Detailed Game Design}
+
+
+\subsection{Character}
+
+\begin{itemize}
+\item A character has Hit Points (HP) and Action Points (AP). The character will die when HP goes to zero. The character will need to have a rest when AP goes to zero.
+\item A character has attributes like Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma, etc. These attributes will impact the power of the character’s skill and the action sequence. Some skills may require a certain level of attributes.
+\end{itemize}
+
+
+\subsection{World}
+
+\begin{itemize}
+\item Consists of a bounded map of custom length and width.
+\item The map is generated randomly when starting the game.
+\item The goal is to find the required object (and not die during the process). Once the required object is found, the game ends.
+\end{itemize}
+
+
+\subsection{Gameplay}
+
+\begin{itemize}
+\item Clock-based game. 
+    \begin{itemize}
+    \item Hero and NPC’s moves are based on the clock. The character’s move has a cost of ticks. For example, moving forward cost one tick, but a powerful spell may cost three ticks.
+    \item The day-night cycles are based on the clock. For example, a day has 24 ticks and 12 ticks in the daytime.
+    \item Weather also changes on ticks, but the following weather and how many ticks it holds depends on the dice. For example, the current weather has six ticks when we get six by dice.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Plan and Milestones}
+
+\subsection{High Level Requirements}
 
 \begin{itemize}
 \item Design the rules of the world (i.e. the world itself)
@@ -83,7 +117,7 @@ High Level Requirements:
 \item Prolog system design: how do we model the dice and the moves of a player?
 \end{itemize}
 
-\subsection*{Detailed Weekly Plan}
+\subsection{Detailed Weekly Plan}
 
 \subsubsection*{Week 1:}
 
@@ -127,7 +161,7 @@ High Level Requirements:
 
 
 
-\section*{Risks}
+\section{Risks}
 
 The biggest risk of this project is that we are not familiar with the Prolog language and are not familiar with its capabilities. Fortunately, the manual is rather descriptive and the language is open-source and can be engineered to our own purposes.
 
@@ -136,7 +170,7 @@ Furthermore, modeling an open-world is not an easy task. We may need to build a 
 Designing rules that work together and interact with one another requires very careful design. This is an interesting yet daunting task that we plan to tackle early on before we start building. We will start out with simple rules and add more complex ones later into the project.
 
 
-\section*{First Actions}
+\section{First Actions}
 
 Our first actions are two-fold:
 
