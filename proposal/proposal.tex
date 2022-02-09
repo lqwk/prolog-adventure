@@ -97,7 +97,7 @@ The following lists some requirements and questions:
 \begin{itemize}
 \item Clock-based game. 
     \begin{itemize}
-    \item Hero and NPC’s moves are based on the clock. The character’s move has a cost of ticks. For example, moving forward cost one tick, but a powerful spell may cost three ticks.
+    \item Hero and NPC’s moves are based on the clock. The character’s move has a cost of ticks. For example, moving forward costs one tick, but a powerful spell may cost three ticks.
     \item The day-night cycles are based on the clock. For example, a day has 24 ticks and 12 ticks in the daytime.
     \item Weather also changes on ticks, but the following weather and how many ticks it holds depends on the dice. For example, the current weather has six ticks when we get six by dice.
     \end{itemize}
@@ -124,38 +124,40 @@ The following lists some requirements and questions:
 \begin{itemize}
 \item Design the basic rules and systems of the world
     \begin{itemize}
-    \item Rules for moving
-    \item Day-night cycle system?
+    \item Rules for moving (Qingwei)
+    \item Day-night cycle system (Wentao)
     \end{itemize}
-\item Design how the game ends (game objectives)
+\item Design how the game ends (game objectives) (Liqian)
 \end{itemize}
 
 
 \subsubsection*{Week 2:}
 
 \begin{itemize}
-\item Build basic static world rules in Prolog
-\item Allow basic hero to move around within the static world
+\item Build basic static world rules in Prolog (All)
+\item Allow basic hero to move around within the static world (Qingwei)
 \end{itemize}
 
 
 \subsubsection*{Week 3:}
 
 \begin{itemize}
-\item Ensure the game ends properly when objective is reached
+\item Ensure the game ends properly when objective is reached (Liqian)
+\item Quality assurance to make sure everything is going expected (Wentao)
+\item Start drafting report (Qingwei)
 \end{itemize}
 
 
 \subsubsection*{Week 4:}
 
 \begin{itemize}
-\item Construct demo and write report paper
+\item Construct demo and write report paper (All)
 \item Build a more complex world
     \begin{itemize}
-    \item More complex rules
-    \item Hero capabilities and abilities
-    \item Subgoals within the adventure
-    \item Make the world change dynamically
+    \item More complex rules (Qingwei)
+    \item Hero capabilities and abilities (Wentao)
+    \item Subgoals within the adventure (Liqian)
+    \item Make the world change dynamically (Wentao)
     \end{itemize}
 \end{itemize}
 
@@ -163,7 +165,7 @@ The following lists some requirements and questions:
 
 \section{Risks}
 
-The biggest risk of this project is that we are not familiar with the Prolog language and are not familiar with its capabilities. Fortunately, the manual is rather descriptive and the language is open-source and can be engineered to our own purposes.
+The biggest risk of this project is that we are not familiar with the Prolog language and are not familiar with its capabilities. Fortunately, the manual is rather descriptive and the language is open-source and can be engineered to our own purposes. Also, some members are not even familiar with the game. To make the project fit the scope of a course team work, there are a lot of changes of scope and communications going between team members and instructors. 
 
 Furthermore, modeling an open-world is not an easy task. We may need to build a simple physical reasoning engine, day-night cycles, weather, etc. to make the gameplay more interesting and more “life-like”. We will need to scope this down properly.
 
@@ -172,9 +174,8 @@ Designing rules that work together and interact with one another requires very c
 
 \section{First Actions}
 
-Our first actions are two-fold:
-
 \begin{itemize}
+\item Getting familiar with the technical side of the project such as Prolog and development environment. Also play a few rounds of the game to figure out the rules.
 \item Evaluate the technical feasibility of this project and scope the project accordingly. For example, if modeling a dice is not possible, then we can make moves deterministic and focus more on designing the open-world rules.
 \item Designing the open-world rules. We need to figure out how complicated it should be and what components (physical reasoning engine, day-night cycles, weather, etc) we should include.
 \item Building a basic world and hero that allows moving throughout.
