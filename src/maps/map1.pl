@@ -1,7 +1,10 @@
 % create a map of size 10 x 10
 mapsize(10, 10).
 
-% add rocks
+% set the hero's starting position
+heropos(1, 1).
+
+% rocks
 rock(1, 8).
 rock(2, 1).
 rock(2, 2).
@@ -16,8 +19,8 @@ rock(4, 8).
 rock(4, 9).
 rock(5, 2).
 
-% set the hero's starting position
-heropos(0, 0).
+% walls
+wall(1, 2).
 
 % gem position
 gem(10, 10).
