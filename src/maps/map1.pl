@@ -6,7 +6,6 @@ heropos(1, 1).
 
 % rocks
 rock(1, 8).
-rock(2, 1).
 rock(2, 2).
 rock(2, 4).
 rock(2, 5).
