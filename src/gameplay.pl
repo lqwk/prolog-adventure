@@ -1,3 +1,7 @@
+% this file contains all functionality related to the gameplay
+
+:- dynamic heropos/2, rock/2, gem/2, active/1.
+
 % the goal of the game is to find the hidden gem
 % once the hero finds the hidden gem, the game ends
 % and the hero wins.
