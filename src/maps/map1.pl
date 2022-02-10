@@ -26,3 +26,6 @@ gem(5, 1).
 
 % set game to be active
 active(game).
+
+% set time to start at 0
+time(0).

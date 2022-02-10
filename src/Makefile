@@ -1,4 +1,5 @@
-FILES = dice.pl \
+FILES = clock.pl \
+		dice.pl \
 		goal.pl \
 		map.pl \
 		move.pl \

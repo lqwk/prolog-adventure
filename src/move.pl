@@ -29,7 +29,9 @@ goto(X, Y) :-
         retract( heropos(CX, CY) ),
         % move hero to new location
         assert( heropos(X, Y) ),
-        writef('\t[ok]\n\n')
+        writef('\t[ok]\n\n'),
+        % a move uses a single clock tick
+        tick()
     ;
         write('\t[FAILED]\n\n')
     ).
