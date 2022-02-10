@@ -16,6 +16,8 @@ can_move(X, Y) :-
 % move the hero to position (X, Y)
 goto(X, Y) :-
     (
+        % check whether game is active
+        active(game),
         % checks whether position is within bounds of (X, Y)
         in_bounds(X, Y),
         % check position (X, Y) is valid for a move

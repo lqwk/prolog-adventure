@@ -22,4 +22,7 @@ rock(5, 2).
 wall(1, 2).
 
 % gem position
-gem(10, 10).
+gem(5, 1).
+
+% set game to be active
+active(game).
