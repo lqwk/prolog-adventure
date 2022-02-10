@@ -8,6 +8,7 @@ win() :-
     gem(X, Y),
     pickup_gem(X, Y),
     retract( active(game) ),
-    write('Found gem! You win!\n\n').
+    write('Found gem! You win!\n\n'),
+    halt.
 
 pickup_gem(X, Y) :- retract( gem(X, Y) ).
