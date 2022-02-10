@@ -32,11 +32,20 @@ goto(X, Y) :-
         write('\t[FAILED]\n\n')
     ).
 
+% derive the position to the right of the hero
+rpos(X, Y) :- PX #= X-1, heropos(PX, Y).
+% derive the position to the left of the hero
+lpos(X, Y) :- PX #= X+1, heropos(PX, Y).
+% derive the position above the hero
+upos(X, Y) :- PY #= Y-1, heropos(X, PY).
+% derive the position below the hero
+dpos(X, Y) :- PY #= Y+1, heropos(X, PY).
+
 % move right by 1 step
-rr() :- heropos(X, Y), NX #= X+1, write('Moving right... '), goto(NX, Y).
+rr() :- rpos(X, Y), write('Moving right... '), goto(X, Y).
 % move left by 1 step
-ll() :- heropos(X, Y), NX #= X-1, write('Moving left... '), goto(NX, Y).
+ll() :- lpos(X, Y), write('Moving left... '), goto(X, Y).
 % move up by 1 step
-uu() :- heropos(X, Y), NY #= Y+1, write('Moving up... '), goto(X, NY).
+uu() :- upos(X, Y), write('Moving up... '), goto(X, Y).
 % move down by 1 step
-dd() :- heropos(X, Y), NY #= Y-1, write('Moving down... '), goto(X, NY).
+dd() :- dpos(X, Y), write('Moving down... '), goto(X, Y).
