@@ -33,13 +33,13 @@ goto(X, Y) :-
     ).
 
 % derive the position to the right of the hero
-rpos(X, Y) :- PX #= X-1, heropos(PX, Y).
+rpos(X, Y) :- PY #= Y-1, heropos(X, PY).
 % derive the position to the left of the hero
-lpos(X, Y) :- PX #= X+1, heropos(PX, Y).
+lpos(X, Y) :- PY #= Y+1, heropos(X, PY).
 % derive the position above the hero
-upos(X, Y) :- PY #= Y-1, heropos(X, PY).
+upos(X, Y) :- PX #= X-1, heropos(PX, Y).
 % derive the position below the hero
-dpos(X, Y) :- PY #= Y+1, heropos(X, PY).
+dpos(X, Y) :- PX #= X+1, heropos(PX, Y).
 
 % move right by 1 step
 rr() :- rpos(X, Y), write('Moving right... '), goto(X, Y).
