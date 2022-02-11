@@ -29,11 +29,11 @@ goto(X, Y) :-
         retract( heropos(CX, CY) ),
         % move hero to new location
         assert( heropos(X, Y) ),
-        writef('\t[ok]\n\n'),
+        writef('\t[ok]\n'),
         % a move uses a single clock tick
         tick()
     ;
-        write('\t[FAILED]\n\n')
+        write('\t[FAILED]\n')
     ).
 
 % derive the position to the right of the hero

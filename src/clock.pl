@@ -12,8 +12,8 @@ inc_time() :-
     % update time with NT
     retract( time(T) ),
     assert( time(NT) ),
-    % print current time
-    writef('Current time: \t %d\n\n', [NT]).
+    % print time information
+    print_time().
 
 % defines all actions that happens during each clock tick
 tick() :-
