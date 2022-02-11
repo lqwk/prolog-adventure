@@ -26,3 +26,7 @@ gem(5, 1).
 
 % set time to start at 0
 time(0).
+
+% setup the hero
+hero_hp(100).
+hero_stamina(100).
