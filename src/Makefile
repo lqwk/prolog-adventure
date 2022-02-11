@@ -1,6 +1,7 @@
 FILES = clock.pl \
 		dice.pl \
 		gameplay.pl \
+		hero.pl \
 		move.pl \
 		systems.pl \
 		utils.pl

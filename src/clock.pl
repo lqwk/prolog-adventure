@@ -21,3 +21,11 @@ tick() :-
     inc_time(),
     % check whethe the game has ended
     win().
+
+% helper to print time information
+print_time() :-
+    % print the day-night cycle time
+    (is_day() -> writef('[🌞]: ') ; true),
+    (is_night() -> writef('[🌙]: ') ; true),
+    % print the current time
+    time(T), writef('Time: %d\n', [T]).
