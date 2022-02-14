@@ -28,5 +28,5 @@ gem(5, 1).
 time(0).
 
 % setup the hero
-hero_hp(100).
+hero_health(100).
 hero_stamina(100).
