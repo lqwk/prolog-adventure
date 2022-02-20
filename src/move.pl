@@ -27,6 +27,8 @@ goto(X, Y) :-
         retract( heropos(CX, CY) ),
         % move hero to new location
         assert( heropos(X, Y) ),
+        % If there is a peril, fight it
+        has_peril(X, Y),
         writef('\t[ok]\n'),
         % a move uses a single clock tick
         tick()
