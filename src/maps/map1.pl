@@ -33,3 +33,4 @@ hero_stamina(100).
 
 % setup the perils
 peril(2, 1, -5).
+

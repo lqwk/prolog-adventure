@@ -18,3 +18,4 @@ fight_peril(X, Y) :-
     ;
     true
     ).
+
