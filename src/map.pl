@@ -16,57 +16,33 @@
 %   3:  gem:    if found, game ends
 %   4:  rock:   initially not walkable, but can be broken
 %
+%   -M: peril:  a negative number indicates a peril (monster)
+%
 % maps start from upper left corner (1,1) position and advance
 % downwards and rightwards by increasing the (row, col) position
 % -----------------------------------------------------------------
 
 
 % calculate mapsize from nrows and ncols
-mapsize(Rows, Cols) :- maprows(Rows), mapcols(Cols).
+length_of(N, L) :- length(L, N).
+size(M, R, C) :- length(M, R), maplist(length_of(C), M).
+mapsize(C, R) :- map(M), size(M, R, C).
 
 
-% 0:  empty:  walkable spot
-process_cell(0, _, _) :- true.
-% 1:  wall:   not walkable
-process_cell(1, C, R) :- assert( wall(C, R) ).
-% 2:  start:  hero starts adventure at this location
-process_cell(2, C, R) :- assert( heropos(C, R) ).
-% 3:  gem:    if found, game ends
-process_cell(3, C, R) :- assert( gem(C, R) ).
-% 4:  rock:   initially not walkable, but can be broken
-process_cell(4, C, R) :- assert( rock(C, R) ).
+% finds and binds position (C, R) to value V in map
+find(C, R, V) :-
+    % extract the map
+    map(Map),
+    % iterate through each row
+    nth1(R, Map, Row),
+    % iterate through each col
+    nth1(C, Row, V).
 
 
-% process cols
-% base case: set number of cols, check whether ncols match
-process_cols([], _, Ncol) :-
-    Cols #= Ncol - 1,
-    (
-        mapcols(C)
-    ->
-        % ensure that ncols matches previously asserted value
-        (C #= Cols -> true; write('Number of cols mismatch, aborting\n\n'), halt)
-    ;
-        assert( mapcols(Cols) )
-    ).
-% recursive case: extract current cell and process
-process_cols([Head|Tail], Nrow, Ncol) :-
-    % process current position (Ncol, Nrow)
-    process_cell(Head, Ncol, Nrow),
-    % process next col recursively
-    NNcol #= Ncol + 1, process_cols(Tail, Nrow, NNcol).
-
-
-% process rows
-% base case: done processing, set number of rows
-process_rows([], Nrow) :- Rows #= Nrow - 1, assert( maprows(Rows) ).
-% recursive case: extract row and process, then advance to next row
-process_rows([Row|Rem], Nrow) :-
-    % process currently extracted row
-    process_cols(Row, Nrow, 1),
-    % advance to next row recursively
-    NNrow #= Nrow + 1, process_rows(Rem, NNrow).
-
-
-% helper function to setup map from a 2D grid
-setup() :- map(M), process_rows(M, 1).
+% rules for deriving object positions, note that these
+% positions are static and cannot be changed
+wall(C, R)     :- find(C, R, 1).
+startpos(C, R) :- find(C, R, 2).
+gempos(C, R)   :- find(C, R, 3).
+rockpos(C, R)  :- find(C, R, 4).
+peril(C, R, M) :- find(C, R, M), M #< 0.

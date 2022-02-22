@@ -1,12 +1,12 @@
 :- use_module(library(clpfd)).
 
 % checks whether position is within bounds of (X, Y)
-in_bounds(X, Y) :-
-    mapsize(MX, MY),
-    X #=< MX,
-    Y #=< MY,
-    X #> 0,
-    Y #> 0.
+in_bounds(C, R) :-
+    mapsize(MC, MR),
+    C #=< MC,
+    R #=< MR,
+    C #> 0,
+    R #> 0.
 
 % check if a move is valid
 can_move(X, Y) :-

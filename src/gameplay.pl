@@ -17,9 +17,6 @@ win() :- true.
 
 pickup_gem(X, Y) :- retract( gem(X, Y) ).
 
-start() :-
-    % setup the game map
-    setup(),
-    % print some information
-    write('Game has started!\n'),
-    print_time().
+start() :- (startpos(C, R) -> assert(heropos(C, R)); true), fail.
+start() :- (gempos(C, R) -> assert(gem(C, R)); true), fail.
+start().
