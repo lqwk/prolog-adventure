@@ -2,6 +2,7 @@ FILES = clock.pl \
 		dice.pl \
 		gameplay.pl \
 		hero.pl \
+		init.pl \
 		map.pl \
 		move.pl \
 		peril.pl \
