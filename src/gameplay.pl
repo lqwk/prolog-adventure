@@ -16,3 +16,10 @@ win() :-
 win() :- true.
 
 pickup_gem(X, Y) :- retract( gem(X, Y) ).
+
+start() :-
+    % setup the game map
+    setup(),
+    % print some information
+    write('Game has started!\n'),
+    print_time().

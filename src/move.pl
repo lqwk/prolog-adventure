@@ -38,13 +38,13 @@ goto(X, Y) :-
     ).
 
 % derive the surrounding positions of the hero
-rpos(X, Y) :- PY #= Y-1, heropos(X, PY).
-lpos(X, Y) :- PY #= Y+1, heropos(X, PY).
-upos(X, Y) :- PX #= X-1, heropos(PX, Y).
-dpos(X, Y) :- PX #= X+1, heropos(PX, Y).
+rpos(C, R) :- NC #= C-1, heropos(NC, R).
+lpos(C, R) :- NC #= C+1, heropos(NC, R).
+upos(C, R) :- NR #= R+1, heropos(C, NR).
+dpos(C, R) :- NR #= R-1, heropos(C, NR).
 
 % shorthand commands for making moves
-rr() :- rpos(X, Y), write('Moving right... '), goto(X, Y).
-ll() :- lpos(X, Y), write('Moving left... '), goto(X, Y).
-uu() :- upos(X, Y), write('Moving up... '), goto(X, Y).
-dd() :- dpos(X, Y), write('Moving down... '), goto(X, Y).
+rr() :- rpos(C, R), write('Moving right... '), goto(C, R).
+ll() :- lpos(C, R), write('Moving left... '),  goto(C, R).
+uu() :- upos(C, R), write('Moving up... '),    goto(C, R).
+dd() :- dpos(C, R), write('Moving down... '),  goto(C, R).
