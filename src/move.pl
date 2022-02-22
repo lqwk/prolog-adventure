@@ -33,7 +33,8 @@ goto(X, Y) :-
         % a move uses a single clock tick
         tick()
     ;
-        write('\t[FAILED]\n')
+        write('\t[FAILED]\n'),
+        false
     ).
 
 % derive the surrounding positions of the hero

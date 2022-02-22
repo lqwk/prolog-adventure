@@ -13,4 +13,6 @@ win() :-
     write('Found gem! You win!\n\n'),
     halt.
 
+win() :- true.
+
 pickup_gem(X, Y) :- retract( gem(X, Y) ).
