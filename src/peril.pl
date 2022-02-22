@@ -1,3 +1,5 @@
+% this file contains logic related to fighting perils
+
 :- use_module(library(clpfd)).
 :- dynamic peril/3.
 
