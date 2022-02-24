@@ -19,4 +19,4 @@ pickup_gem(X, Y) :- retract( gem(X, Y) ).
 
 start() :- (startpos(C, R) -> assert(heropos(C, R)); true), fail.
 start() :- (gempos(C, R) -> assert(gem(C, R)); true), fail.
-start().
+start() :- tick().
