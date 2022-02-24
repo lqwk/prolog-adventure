@@ -10,7 +10,7 @@ win() :-
     heropos(X, Y),
     gem(X, Y),
     pickup_gem(X, Y),
-    write('Found gem! You win!\n\n'),
+    write('\nFound gem! You win!\n\n'),
     halt.
 
 win() :- true.

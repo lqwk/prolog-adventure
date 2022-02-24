@@ -17,10 +17,10 @@ inc_time() :-
 tick() :-
     % increment and print global time
     inc_time(), print_time(),
-    % print discovery information
-    discover(),
     % check whether the game has ended
-    win().
+    win(),
+    % print discovery information
+    discover().
 
 % helper to print time information
 print_time() :-
