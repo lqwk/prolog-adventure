@@ -3,9 +3,9 @@
 :- use_module(library(clpfd)).
 :- dynamic peril/3.
 
-fight_peril(X, Y) :-
+fight_peril(C, R) :-
     (
-        peril(X, Y, M)
+        peril(C, R, M)
     ->
         % get current health
         hero_health(H),
@@ -16,8 +16,9 @@ fight_peril(X, Y) :-
         retract( hero_health(H) ),
         assert( hero_health(NH) ),
         % print current health
-        print_hero_status()
+        print_hero_status(),
+        % remove the peril from the map
+        retract( peril(C, R, M) )
     ;
         true
     ).
-

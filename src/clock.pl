@@ -11,16 +11,16 @@ inc_time() :-
     NT #= T + 1,
     % update time with NT
     retract( time(T) ),
-    assert( time(NT) ),
-    % print time information
-    print_time().
+    assert( time(NT) ).
 
 % defines all actions that happens during each clock tick
 tick() :-
-    % increment global time
-    inc_time(),
-    % check whethe the game has ended
-    win().
+    % increment and print global time
+    inc_time(), print_time(),
+    % check whether the game has ended
+    win(),
+    % print discovery information
+    discover().
 
 % helper to print time information
 print_time() :-

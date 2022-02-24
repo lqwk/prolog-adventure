@@ -10,13 +10,15 @@ win() :-
     heropos(X, Y),
     gem(X, Y),
     pickup_gem(X, Y),
-    write('Found gem! You win!\n\n'),
+    write('\nFound gem! You win!\n\n'),
     halt.
 
 win() :- true.
 
 pickup_gem(X, Y) :- retract( gem(X, Y) ).
 
-start() :- (startpos(C, R) -> assert(heropos(C, R)); true), fail.
-start() :- (gempos(C, R) -> assert(gem(C, R)); true), fail.
-start().
+start() :- (static_heropos(C, R)  -> assert(heropos(C, R)); true), fail.
+start() :- (static_gem(C, R)      -> assert(gem(C, R)); true), fail.
+start() :- (static_rock(C, R)     -> assert(rock(C, R)); true), fail.
+start() :- (static_peril(C, R, M) -> assert(peril(C, R, M)); true), fail.
+start() :- tick().

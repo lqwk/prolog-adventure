@@ -41,8 +41,8 @@ find(C, R, V) :-
 
 % rules for deriving object positions, note that these
 % positions are static and cannot be changed
-wall(C, R)     :- find(C, R, 1).
-startpos(C, R) :- find(C, R, 2).
-gempos(C, R)   :- find(C, R, 3).
-rockpos(C, R)  :- find(C, R, 4).
-peril(C, R, M) :- find(C, R, M), M #< 0.
+wall(C, R)            :- find(C, R, 1).
+static_heropos(C, R)  :- find(C, R, 2).
+static_gem(C, R)      :- find(C, R, 3).
+static_rock(C, R)     :- find(C, R, 4).
+static_peril(C, R, M) :- find(C, R, M), M #< 0.
