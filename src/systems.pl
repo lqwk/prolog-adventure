@@ -2,7 +2,8 @@
 
 :- use_module(library(clpfd)).
 
-% ==================== day-night cycle ====================
+
+% ======================= day-night cycle =======================
 
 % the day-night cycle is derived from ticks in the global clock
 % daytime is defined to be within ticks [0, 12)
@@ -11,4 +12,22 @@
 is_day() :- time(T), T mod 24 #< 12.
 is_night() :- time(T), T mod 24 #>= 12, T mod 24 #< 24.
 
-% ==================== day-night cycle ====================
+% ======================= day-night cycle =======================
+
+
+
+
+% ======================= weather system ========================
+
+% The main purpose of the weather system is to introduce some
+% uncertainty into the world map.
+%
+% Weather is defined for each cell in the grid and may change
+% randomly. The weather for each cell is generated and defined by
+% a random number. Not all cells may have weather associated with
+% it. For example, during a certain clock cycle on a 10 x 10 map,
+% we might just change the weather for 50 cells out of 100 cells.
+
+
+
+% ======================== weather system =======================
