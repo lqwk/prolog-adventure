@@ -2,9 +2,8 @@
 
 :- dynamic rock/2, gem/2, peril/3, has_peril/3.
 
-% the goal of the game is to find the hidden gem
-% once the hero finds the hidden gem, the game ends
-% and the hero wins.
+% the goal of the game is to find the hidden gem once the hero
+% finds the hidden gem, the game ends and the hero wins.
 
 win() :-
     heropos(X, Y),
