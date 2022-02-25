@@ -29,5 +29,14 @@ is_night() :- time(T), T mod 24 #>= 12, T mod 24 #< 24.
 % we might just change the weather for 50 cells out of 100 cells.
 
 
+% bind the number of total cells N to C * R
+total_cells(N) :- mapsize(C, R), N #= C * R.
+
+% number of cells affected by weather changes on each tick
+weather_affected_cells(N) :-
+    total_cells(T), TT is float(T),
+    weather_influence(P), PP is float(P),
+    NN is TT * PP,
+    N is ceiling(NN).
 
 % ======================== weather system =======================
