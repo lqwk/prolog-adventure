@@ -1,10 +1,6 @@
 % functionality related to creating game maps
 
 :- use_module(library(clpfd)).
-:- dynamic map/1.
-:- dynamic mapsize/2, mapcols/1, maprows/1, heropos/2.
-:- dynamic wall/2, gem/2, rock/2.
-
 
 % -----------------------------------------------------------------
 % maps are represented by a grid of numbers, keys are listed below
