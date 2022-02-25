@@ -1,6 +1,7 @@
 % contains facts and rules for systems within the world
 
 :- use_module(library(clpfd)).
+:- dynamic weather/3.
 
 
 % ======================= day-night cycle =======================
@@ -38,5 +39,41 @@ weather_affected_cells(N) :-
     weather_influence(P), PP is float(P),
     NN is TT * PP,
     N is ceiling(NN).
+
+
+% listed below are the different kinds of weather conditions:
+%
+%   1. clear:    nothing happens in clear weathers!
+%   2. rainy:    -1 stamina on each clock cycle
+%   3. thunder:  -1 stamina and -1 health on each clock cycle
+%   4. foggy:    cannot see stuff on the cell
+
+
+% randomly generate a weather condition
+random_weather(W) :- random_between(1, 4, W).
+
+% change the weather at (C, R) to W
+set_weather(_, _, W) :- W #= 1, fail.
+set_weather(C, R, W) :- W #= 2, assert( weather(C, R, rainy) ), fail.
+set_weather(C, R, W) :- W #= 3, assert( weather(C, R, thunder) ), fail.
+set_weather(C, R, W) :- W #= 4, assert( weather(C, R, foggy) ), fail.
+set_weather(_, _, _).
+
+% clear previous weather conditions
+clear_weather(C, R) :- weather(C, R, W), retract(weather(C, R, W)), fail.
+clear_weather(_, _).
+
+% randomly change the weather of cell (C, R)
+change_weather(C, R) :-
+    % randomly generate weather condition
+    random_weather(W),
+    % retract previous weather condition
+    clear_weather(C, R),
+    % set the new weather
+    set_weather(C, R, W),
+    % fallthrough
+    fail.
+
+change_weather(_, _).
 
 % ======================== weather system =======================
