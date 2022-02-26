@@ -18,3 +18,5 @@ time(0).
 % setup the hero
 hero_health(100).
 hero_stamina(100).
+monster_health(100).
+hero_att(20).

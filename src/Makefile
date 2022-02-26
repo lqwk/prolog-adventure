@@ -7,6 +7,7 @@ FILES = clock.pl \
 		move.pl \
 		peril.pl \
 		systems.pl \
+		combat.pl \
 		utils.pl
 
 run: $(FILES) maps/map1.pl
