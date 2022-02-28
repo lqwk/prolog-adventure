@@ -28,10 +28,10 @@ start().
 
 To move around, run the following commands
 
-* `rr()`: Move right
-* `ll()`: Move left
-* `uu()`: Move up
-* `dd()`: Move down
+* `rr().`: Move right
+* `ll().`: Move left
+* `uu().`: Move up
+* `dd().`: Move down
 
 ## Goal
 
