@@ -22,3 +22,6 @@ hero_stamina(100).
 % set the percentage of cells that are affected by
 % weather changes on each clock cycle tick
 weather_influence(0.25).
+
+monster_health(100).
+hero_att(20).
