@@ -17,6 +17,8 @@ inc_time() :-
 tick() :-
     % increment and print global time
     inc_time(), print_time(),
+    % change the weather globally
+    change_all_weather(),
     % check whether the game has ended
     win(),
     % print discovery information

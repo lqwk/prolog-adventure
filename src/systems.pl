@@ -76,4 +76,33 @@ change_weather(C, R) :-
 
 change_weather(_, _).
 
+
+% randomly generate a cell on the map
+random_cell(C, R) :-
+    % get the size of the map
+    mapsize(MC, MR),
+    % randomly generate (C, R) pairs to change weather for
+    random_between(1, MC, C), random_between(1, MR, R).
+
+% recursive definition for changing the weather for n cells
+change_weather_for_n_cells(N) :-
+    % boundary condition
+    N #> 0,
+    % randomly get a cell on the map
+    random_cell(C, R),
+    % actually change the weather
+    change_weather(C, R),
+    % loop condition
+    S #= N-1, change_weather_for_n_cells(S), fail.
+
+change_weather_for_n_cells(_).
+
+% randomly choose N cells to change the weather
+% N is given by weather_affected_cells(N)
+change_all_weather() :-
+    % get the number of cells to change weather for
+    weather_affected_cells(N),
+    % change the weather for a total of N cells
+    change_weather_for_n_cells(N).
+
 % ======================== weather system =======================
