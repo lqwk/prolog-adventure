@@ -23,5 +23,6 @@ hero_stamina(100).
 % weather changes on each clock cycle tick
 weather_influence(0.25).
 
+% defines constants for combat
 monster_health(100).
-hero_att(20).
+hero_attack(20).
