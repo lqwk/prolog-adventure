@@ -1,6 +1,11 @@
 % contains logic related to discovering cells around the hero
 
 % show the information for the cell on which the hero is on
+
+% cannot see cell info in foggy weather
+show_cell_info(C, R) :- weather(C, R, foggy), write('Foggy, cannot see'), !.
+
+% otherwise, print cell information
 show_cell_info(C, R) :- wall(C, R), write('Wall'), fail.
 show_cell_info(C, R) :- rock(C, R), write('Rock'), fail.
 show_cell_info(C, R) :- gem(C, R), write('Gem'), fail.
