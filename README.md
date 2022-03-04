@@ -32,6 +32,7 @@ To move around, run the following commands
 * `ll().`: Move left
 * `uu().`: Move up
 * `dd().`: Move down
+* `stay()`: Stay put at current location
 
 ## Goal
 
