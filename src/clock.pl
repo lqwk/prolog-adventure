@@ -17,6 +17,8 @@ inc_time() :-
 tick() :-
     % clock cycle
     tick_without_discover(),
+    % print hero information
+    print_hero_status(),
     % print discovery information
     discover().
 
@@ -26,6 +28,9 @@ tick_without_discover() :-
     inc_time(), print_time(),
     % change the weather globally
     change_all_weather(),
+    % if the hero is on a cell with weather conditions
+    % deal damage to hero health/stamina accordingly
+    weather_damage(),
     % check whether the game has ended
     win().
 

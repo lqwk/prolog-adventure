@@ -105,4 +105,30 @@ change_all_weather() :-
     % change the weather for a total of N cells
     change_weather_for_n_cells(N).
 
+
+% deal damage to hero's health/stamina accordingly
+weather_damage() :-
+    % hero's position and weather
+    heropos(C, R), weather(C, R, rainy),
+    % deal damage to hero's stamina
+    hero_stamina(S), NS #= S-1,
+    retract( hero_stamina(S) ),
+    assert( hero_stamina(NS) ),
+    fail.
+
+weather_damage() :-
+    % hero's position and weather
+    heropos(C, R), weather(C, R, thunder),
+    % deal damage to hero's stamina
+    hero_stamina(S), NS #= S-1,
+    retract( hero_stamina(S) ),
+    assert( hero_stamina(NS) ),
+    % deal damage to hero's health
+    hero_health(H), NH #= H-1,
+    retract( hero_health(H) ),
+    assert( hero_health(NH) ),
+    fail.
+
+weather_damage().
+
 % ======================== weather system =======================
