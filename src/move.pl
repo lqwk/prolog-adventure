@@ -48,3 +48,6 @@ rr() :- rpos(C, R), write('Moving right... '), goto(C, R).
 ll() :- lpos(C, R), write('Moving left... '),  goto(C, R).
 uu() :- upos(C, R), write('Moving up... '),    goto(C, R).
 dd() :- dpos(C, R), write('Moving down... '),  goto(C, R).
+
+% stay put at current location
+stay() :- write('Staying put... \t[ok]\n'), tick().
