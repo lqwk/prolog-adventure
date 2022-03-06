@@ -1,0 +1,111 @@
+\documentclass[9pt]{article}
+\usepackage[document]{ragged2e}
+\usepackage{multicol}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{caption}
+\captionsetup[subfigure]{justification=centering}
+\captionsetup[figure]{justification=centering}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{enumitem}
+\setlist{nosep}
+\usepackage{multicol}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{Page. \thepage}
+\fancypagestyle{plain}{
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \fancyfoot[R]{Page. \thepage}
+}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+
+
+
+\begin{document}
+
+\begin{center}
+\textbf{\Large Open-World Adventure Game}\\[.2cm]
+Liqian Ma, Qingwei Lan, Wentao Yao
+\end{center}
+
+
+\begin{multicols*}{2}
+
+
+\underline{\textbf{\normalsize Project Introduction and Goal}}
+
+We built a maze game with a knowledge base and inference engine called “open-world adventure”, where a role-played hero can navigate, explore, and fight. The goal of this project is to make use of Prolog and its inference engine to create a knowledge base with our own rules.
+
+This world is a rule-based world with complex systems such as weather, monster fighting, exploration, day-night cycles, etc. The hero travels through the world by choosing its next move and the world's reasoning engine will determine whether the move is a valid one or not. The reasoning engine will also use existing rules and facts to determine events that may happen after the hero makes the move. For example, if the hero enters a location with thunderstorms, the hero will lose some health and stamina.
+
+
+
+\underline{\textbf{\normalsize Knowledge Representation \& Reasoning}}
+
+\textit{\underline{Map System}}
+
+We have a map with a predefined size like $10 \times 10$. At each coordinate, we have 6 different objects:
+
+\begin{itemize}
+\item empty: walkable spot
+\item wall:  not walkable
+\item start:  hero starts adventure at this location
+\item gem: if found, the game ends
+\item rock: initially not walkable, but can be broken
+\item peril: a negative number indicates a peril (monster) and the hero needs to defeat the peril in order to advance
+\end{itemize}
+
+At the start of the game, we will define categories for each position and these positions are static and non-changeable during the session.
+
+
+\textit{\underline{Combat System}}
+
+The combat system defines how the hero fights a monster. The damage dealt by the hero and the monster is dependent on the hero and monster’s attack values and the results of rolling a dice. Again, we introduced randomness (rolling a dice) into the system to make the game more fun.
+
+\textbf{Knowledge Encoding}: The abilities of the monster are encoded as facts in the KB.
+
+\textbf{Reasoning}: The combat process is defined by rules that depend on the abilities of the monster, the abilities of the hero, and the outcome of rolling a dice.
+
+
+\textit{\underline{Day-Night Cycle System}}
+
+The world holds a clock that counts time. Each move made by the hero takes 1 “tick” and a single day consists of 24 “ticks”. The first 12 “ticks” are daytime and the following 12 “ticks” are nighttime. This system would have an impact on the hero’s abilities and the abilities of monsters in the world. The latter part would be implemented as a follow-up because it is too complicated for our initial version.
+
+\textbf{Knowledge Encoding}: The global time is kept through a global counter. This counter is asserted into the KB as a fact.
+
+\textbf{Reasoning}: The day/night cycle is inferred from the global time counter by dividing the time by 24 and taking the remainder. If the remainder is within range $[0,12)$, then it is daytime. If it is within $[12,24)$, then it is nighttime.
+
+
+\textit{\underline{Weather System}}
+
+There are 4 types of weather conditions:
+\begin{itemize}
+\item \textbf{Clear}: the weather is clear and nothing will happen; this is the default.
+\item \textbf{Rainy}: the hero will lose 1 stamina point for each clock cycle standing on the cell with rainy weather.
+\item \textbf{Thunder}: bad weather; the hero will lose 1 stamina point and 1 health point for each clock cycle standing on the cell with thunder weather.
+\item \textbf{Foggy}: the hero cannot see anything on a cell with foggy weather. If the cell has a monster, the hero won’t see it and may risk walking right into it, causing an unnecessary fight.
+\end{itemize}
+
+During each clock tick, the world will randomly modify the weather for 25\% of the cells in the map. Randomness is included to ensure the game contains a sense of uncertainty.
+
+\textbf{Knowledge Encoding}: The weather for each cell is a fact (knowledge) that is asserted into the KB.
+
+\textbf{Reasoning}: We built rules that implement the events listed above for each weather condition. For example: the hero cannot see anything on the cell with foggy weather, and if the hero tries to inspect the cell, it will print “Foggy weather, cannot see”. This is accomplished through a rule that checks the weather for a cell location to see if the weather there is foggy.
+
+
+
+
+\end{multicols*}
+\end{document}
