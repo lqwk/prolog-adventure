@@ -28,7 +28,7 @@ goto(X, Y) :-
         % move hero to new location
         assert( heropos(X, Y) ),
         % If there is a peril, fight it
-        fight_peril(X, Y),
+        turn(X, Y),
         writef('\t[ok]\n'),
         % a move uses a single clock tick
         tick()
@@ -48,3 +48,6 @@ rr() :- rpos(C, R), write('Moving right... '), goto(C, R).
 ll() :- lpos(C, R), write('Moving left... '),  goto(C, R).
 uu() :- upos(C, R), write('Moving up... '),    goto(C, R).
 dd() :- dpos(C, R), write('Moving down... '),  goto(C, R).
+
+% stay put at current location
+stay() :- write('Staying put... \t[ok]\n'), tick().

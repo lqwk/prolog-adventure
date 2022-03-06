@@ -15,12 +15,24 @@ inc_time() :-
 
 % defines all actions that happens during each clock tick
 tick() :-
-    % increment and print global time
-    inc_time(), print_time(),
-    % check whether the game has ended
-    win(),
+    % clock cycle
+    tick_without_discover(),
+    % print hero information
+    print_hero_status(),
     % print discovery information
     discover().
+
+% clock cycle without discovery
+tick_without_discover() :-
+    % increment and print global time
+    inc_time(), print_time(),
+    % change the weather globally
+    change_all_weather(),
+    % if the hero is on a cell with weather conditions
+    % deal damage to hero health/stamina accordingly
+    weather_damage(),
+    % check whether the game has ended
+    win().
 
 % helper to print time information
 print_time() :-
