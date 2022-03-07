@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+\usepackage[document]{ragged2e}
+\usepackage{multicol}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{caption}
+\captionsetup[subfigure]{justification=centering}
+\captionsetup[figure]{justification=centering}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{enumitem}
+\setlist{nosep}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{Page. \thepage}
+\fancypagestyle{plain}{
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyhf{}
+    \fancyfoot[R]{Page. \thepage}
+}
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+\titlespacing*{\section}{0pt}{0.8em}{0.2em}
+\titlespacing*{\subsection}{0pt}{0.2em}{0em}
+\titlespacing*{\subsubsection}{0pt}{0.2em}{0em}
+
+\title{
+    Open-World Adventure Game \\[.5cm]
+    \normalsize MSAI 371 Knowledge Representation and Reasoning Project Report
+}
+\author{Liqian Ma, Qingwei Lan, Wentao Yao}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\cite{swiprolog}
+
+
+
+
+\section{Game Details}
+
+In this section, we will explain the details of the game and all the systems we built. We will also explain how we encoded knowledge and how we utilized the reasoning engine to perform tasks with the encoded knowledge.
+
+\subsection{Map System}
+
+We have a map with a predefined size like $10 \times 10$. At each coordinate, we have the following objects as shown in Table \ref{objects}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+Object & Visual & Explanation                                           \\
+\hline
+empty  & \texttt{0}     & walkable spot                                 \\
+wall   & \texttt{1}     & not walkable                                  \\
+start  & \texttt{2}     & hero starts adventure at this location        \\
+gem    & \texttt{3}     & if found, the game ends and hero wins         \\
+rock   & \texttt{4}     & initially not walkable, but can be broken     \\
+peril  & \texttt{-M}    & a negative number indicates a peril (monster) \\
+\hline
+\end{tabular}
+\caption{Table of map objects, their visual representations, and explanations.}
+\label{objects}
+\end{table}
+
+
+\subsubsection*{Visual Representation of Map}
+
+The map can be represented visually, shown below.
+
+\begin{verbatim}
+    [
+        [2, 0, -5, 0, 1, 0, 0, 0, 0, 0],
+        [1, 0,  0, 3, 1, 0, 1, 0, 0, 1],
+        [0, 1,  0, 0, 1, 0, 1, 1, 0, 1],
+        [0, 1,  0, 0, 1, 0, 1, 0, 0, 1],
+        [0, 1,  0, 0, 1, 0, 1, 0, 1, 0],
+        [0, 1,  0, 0, 1, 0, 1, 0, 1, 0],
+        [0, 0,  1, 0, 1, 0, 1, 0, 0, 0],
+        [0, 0,  0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 0,  0, 0, 1, 0, 0, 0, 0, 1],
+        [0, 0,  0, 0, 0, 0, 1, 0, 0, 1]
+    ]
+\end{verbatim}
+
+We built a system to automatically infer the map objects based on this visual representation. This system is one of the most complicated reasoning systems in our project.
+
+We need to process each cell (row and column) to extract the object from the visual representation and insert the object as a fact into our knowledge base. Some objects (walls) cannot be changed and need to be represented statically. Other objects (Gem) can be removed from the map and need to be represented dynamically.
+
+Knowledge Encoding: The map consists of facts inserted into the knowledge base.
+
+Reasoning: The objects at each location are inferred from the visual representation of the map.
+
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
