@@ -1,4 +1,5 @@
-\documentclass[9pt]{article}
+\documentclass[8pt]{extarticle}
+
 \usepackage[document]{ragged2e}
 \usepackage{multicol}
 \usepackage[margin=1in]{geometry}
@@ -17,7 +18,16 @@
 \usepackage{enumitem}
 \setlist{nosep}
 \usepackage{multicol}
+\usepackage{hyperref}
 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -29,7 +39,7 @@
 }
 
 \setlength{\parindent}{0em}
-\setlength{\parskip}{0.5em}
+\setlength{\parskip}{0.8em}
 
 
 
@@ -74,9 +84,18 @@ At the start of the game, we will define categories for each position and these 
 
 The combat system defines how the hero fights a monster. The damage dealt by the hero and the monster is dependent on the hero and monster’s attack values and the results of rolling a dice. Again, we introduced randomness (rolling a dice) into the system to make the game more fun.
 
-\textbf{Knowledge Encoding}: The abilities of the monster are encoded as facts in the KB.
+\textbf{Knowledge Encoding}: The abilities of the monster and hero are encoded as facts in the KB.
+
+\begin{verbatim}
+    monster_health(100).
+    hero_health(100).
+    hero_stamina(100).
+    hero_attack(20).
+\end{verbatim}
 
 \textbf{Reasoning}: The combat process is defined by rules that depend on the abilities of the monster, the abilities of the hero, and the outcome of rolling a dice.
+
+The combat code is too complicated to be listed here but can be found \href{https://github.com/lqwk/prolog-adventure/blob/main/src/combat.pl}{here}.
 
 
 \textit{\underline{Day-Night Cycle System}}
@@ -85,7 +104,16 @@ The world holds a clock that counts time. Each move made by the hero takes 1 “
 
 \textbf{Knowledge Encoding}: The global time is kept through a global counter. This counter is asserted into the KB as a fact.
 
-\textbf{Reasoning}: The day/night cycle is inferred from the global time counter by dividing the time by 24 and taking the remainder. If the remainder is within range $[0,12)$, then it is daytime. If it is within $[12,24)$, then it is nighttime.
+\begin{verbatim}
+    time(0).
+\end{verbatim}
+
+\textbf{Reasoning}: The day/night cycle is inferred from the global time counter by dividing the time by 24 and taking the remainder. If the remainder is within range $[0,12)$, then it is daytime. If it is within $[12,24)$, then it is nighttime. The rule is shown below:
+
+\begin{verbatim}
+    is_day() :- time(T), T mod 24 #< 12.
+    is_night() :- time(T), T mod 24 #>= 12, T mod 24 #< 24.
+\end{verbatim}
 
 
 \textit{\underline{Weather System}}
@@ -102,7 +130,15 @@ During each clock tick, the world will randomly modify the weather for 25\% of t
 
 \textbf{Knowledge Encoding}: The weather for each cell is a fact (knowledge) that is asserted into the KB.
 
+\begin{verbatim}
+    weather(C, R, rainy).
+    weather(C, R, thunder).
+    weather(C, R, foggy).
+\end{verbatim}
+
 \textbf{Reasoning}: We built rules that implement the events listed above for each weather condition. For example: the hero cannot see anything on the cell with foggy weather, and if the hero tries to inspect the cell, it will print “Foggy weather, cannot see”. This is accomplished through a rule that checks the weather for a cell location to see if the weather there is foggy.
+
+The code for the weather system is also complicated and can be found \href{https://github.com/lqwk/prolog-adventure/blob/main/src/systems.pl}{here}.
 
 
 
