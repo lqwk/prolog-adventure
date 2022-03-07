@@ -9,16 +9,17 @@ in_bounds(C, R) :-
     R #> 0.
 
 % check if a move is valid
-can_move(X, Y) :-
-    not(rock(X, Y)),
-    not(wall(X, Y)).
+can_move(C, R) :-
+    % checks whether position is within bounds
+    in_bounds(C, R),
+    % check if position is valid for a move
+    not(rock(C, R)),
+    not(wall(C, R)).
 
 % move the hero to position (X, Y)
 goto(X, Y) :-
     (
-        % checks whether position is within bounds of (X, Y)
-        in_bounds(X, Y),
-        % check position (X, Y) is valid for a move
+        % check if we can move to (X, Y)
         can_move(X, Y)
     ->
         % get hero's current position
