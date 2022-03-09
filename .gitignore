@@ -278,3 +278,5 @@ TSWLatexianTemp*
 .idea/
 
 video/
+
+.DS_Store
