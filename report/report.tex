@@ -48,8 +48,9 @@
 
 We built a maze game with a knowledge base and inference engine called “open-world adventure”, where a role-played hero can navigate, explore, and fight. The goal of this project is to make use of Prolog \cite{swiprolog} and its inference engine to create a knowledge base with our own rules.
 
-This world is a rule-based world with complex systems such as weather, monster fighting, exploration, day-night cycles, etc. The hero travels through the world by choosing its next move and the world's reasoning engine will determine whether the move is a valid one or not. The reasoning engine will also use existing rules and facts to determine events that may happen after the hero makes the move. For example, if the hero enters a location with thunderstorms, the hero will lose some health and stamina.
+We built this game because our team members are fans of adventure games (e.g. Dungeons and Dragons). Our motivation and goal is to build a self-sustaining world that has multiple complex systems interacting with each other by encoding knowledge and building rules.
 
+This world is a rule-based world with complex systems such as weather, monster fighting, exploration, day-night cycles, etc. The hero travels through the world by choosing its next move and the world's reasoning engine will determine whether the move is a valid one or not. The reasoning engine will also use existing rules and facts to determine events that may happen after the hero makes the move. For example, if the hero enters a location with thunderstorms, the hero will lose some health and stamina.
 
 
 
@@ -63,6 +64,7 @@ In this section, we will explain the details of the game and all the systems we 
 We have a map with a predefined size like $10 \times 10$. At each coordinate, we have the following objects as shown in Table \ref{objects}.
 
 \begin{table}[h!]
+\renewcommand{\arraystretch}{1.1}
 \centering
 \begin{tabular}{l c l}
 \Xhline{1.5pt}
@@ -329,6 +331,7 @@ We would like to introduce more complicated universal systems such as a physics 
 \textbf{Decoupling Knowledge Base and User Interaction}
 
 As mentioned in the weaknesses section, we would like to use Python to process user input and feed it into the Prolog system for knowledge processing. This decoupling would make it easier for development and gameplay.
+
 
 
 
